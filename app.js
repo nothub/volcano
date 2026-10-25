@@ -159,7 +159,7 @@ function numberSteps() {
 
 function openEditor(index) {
   editing = index;
-  const wf = workflows[index] ?? { name: '', steps: [{ temp: 185, hold: 0, air: 10 }] };
+  const wf = workflows[index] ?? { name: '', steps: [{ temp: 185, hold: 2, air: 10 }] };
   $('#wf-name').value = wf.name;
   $('#steps').replaceChildren();
   wf.steps.forEach(addStepRow);
@@ -235,7 +235,7 @@ $('#new').addEventListener('click', () => openEditor(-1));
 
 $('#add-step').addEventListener('click', () => {
   const last = [...document.querySelectorAll('#steps [name="temp"]')].at(-1);
-  addStepRow({ temp: Math.min(MAX_TEMP, Number(last?.value ?? 180) + 5), hold: 0, air: 10 });
+  addStepRow({ temp: Math.min(MAX_TEMP, Number(last?.value ?? 180) + 5), hold: 2, air: 10 });
 });
 
 $('#steps').addEventListener('click', (e) => {
