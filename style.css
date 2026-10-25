@@ -74,8 +74,9 @@ progress { width: 100%; margin-block-end: var(--space-2); }
 .controls { column-gap: var(--space-4); justify-content: center; }
 .end { margin-inline-start: auto; }
 
-#run-status { margin-block: var(--space-2) 0; }
+#run-status { flex-direction: column; text-align: center; margin-block: var(--space-2) 0; }
 #run-status:has(#progress:empty) { display: none; }
+#progress { color: var(--color-muted); }
 .danger { color: var(--color-danger); }
 
 /* Fits a button into a legend without pushing the label off the border line. */

@@ -97,14 +97,16 @@ function renderWorkflows() {
     const [first] = wf.steps;
     const li = item.querySelector('li');
     li.dataset.index = i;
+    const isRunning = lastRun?.wf === wf && lastRun.state === 'running';
     if (lastRun?.wf === wf) li.dataset.state = lastRun.state;
-    if (lastRun?.wf === wf && lastRun.state === 'running') {
-      item.querySelector('[data-action="run"]').textContent = 'Running…';
-    }
+    if (isRunning) item.querySelector('[data-action="run"]').textContent = 'Running…';
     item.querySelector('.name').textContent = wf.name;
-    item.querySelector('.summary').textContent = wf.steps.length === 1
+    const summary = wf.steps.length === 1
       ? `${first.temp} °C · wait ${first.hold} s · air ${first.air} s`
       : `${wf.steps.length} steps · ${Math.min(...temps)}–${Math.max(...temps)} °C`;
+    item.querySelector('.summary').textContent = isRunning
+      ? `${summary} · step ${lastRun.step + 1}/${wf.steps.length}`
+      : summary;
     list.append(item);
   }
   renderDevice();
@@ -112,16 +114,17 @@ function renderWorkflows() {
 
 async function run(wf) {
   running = new AbortController();
-  lastRun = { wf, state: 'running' };
+  lastRun = { wf, state: 'running', step: 0 };
   $('#stop').hidden = false;
   renderWorkflows();
   try {
     await runWorkflow(volcano, wf, {
       signal: running.signal,
       onProgress: ({ index, step, phase }) => {
-        $('#progress').textContent =
-          `${wf.name}: step ${index + 1}/${wf.steps.length}, ${PHASE_LABEL[phase]} ${step.temp} °C`;
-        log(`workflow ${$('#progress').textContent}`);
+        lastRun.step = index;
+        $('#progress').textContent = `${wf.name}: ${PHASE_LABEL[phase]} ${step.temp} °C`;
+        log(`workflow ${wf.name}: step ${index + 1}/${wf.steps.length}, ${PHASE_LABEL[phase]} ${step.temp} °C`);
+        renderWorkflows();
       },
     });
     $('#progress').textContent = `${wf.name}: done`;
@@ -131,6 +134,7 @@ async function run(wf) {
     $('#progress').textContent = err.name === 'AbortError' ? `${wf.name}: stopped` : `${wf.name}: ${err.message}`;
   } finally {
     log(`workflow ${$('#progress').textContent}`);
+    $('#progress').textContent = '';
     running = null;
     $('#stop').hidden = true;
     renderWorkflows();
