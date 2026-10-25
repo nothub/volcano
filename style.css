@@ -29,6 +29,19 @@ body {
   box-sizing: border-box;
 }
 
+/* Plant line art behind the page, tinted with the theme's accent through a mask. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--color-accent);
+  opacity: 0.12;
+  -webkit-mask: url(leaves.svg) repeat 0 0 / 25rem;
+  mask: url(leaves.svg) repeat 0 0 / 25rem;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
