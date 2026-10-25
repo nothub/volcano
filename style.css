@@ -97,10 +97,14 @@ progress { width: 100%; margin-block-end: var(--space-2); }
 /* Fits a button into a legend without pushing the label off the border line. */
 button.small {
   min-height: 0;
+  /* Opaque, so the box border and the page behind the legend don't show through. */
+  background: var(--color-surface);
   margin-inline-start: var(--space-2);
   padding: 0 var(--space-2);
   font-size: var(--text-sm);
 }
+
+button.small:hover:not(:disabled) { background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface)); }
 
 .textbox {
   margin: 0;
