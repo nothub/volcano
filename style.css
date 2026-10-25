@@ -6,6 +6,8 @@
   --color-text: #1f3a1a; --color-muted: #4a6741; --color-bg: #f3f9ea; --color-surface: #ffffff;
   --color-glow: #dcefc4; --color-border: #cfe3bf;
   --color-accent: #3a7a1e; --color-on-accent: #ffffff; --color-danger: #b91c1c;
+  /* Background art opacity, tuned per palette to the same contrast (~1.3:1) against the page. */
+  --leaf-opacity: 0.2;
   color-scheme: light dark;
   accent-color: var(--color-accent);
 }
@@ -15,6 +17,7 @@
     --color-text: #e3f2d9; --color-muted: #9dbb90; --color-bg: #0f1f14; --color-surface: #16291b;
     --color-glow: #1c3a22; --color-border: #2c4a31;
     --color-accent: #8fd45e; --color-on-accent: #0f1f14; --color-danger: #f87171;
+    --leaf-opacity: 0.12;
   }
 }
 
@@ -37,7 +40,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background: var(--color-accent);
-  opacity: 0.12;
+  opacity: var(--leaf-opacity);
   -webkit-mask: url(leaves.svg) repeat 0 0 / 25rem;
   mask: url(leaves.svg) repeat 0 0 / 25rem;
 }
