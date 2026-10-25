@@ -108,6 +108,7 @@ input {
   border-radius: var(--space-1);
 }
 #wf-name { width: 100%; }
+#target-input { width: 4rem; text-align: center; }
 
 button {
   font: inherit;
