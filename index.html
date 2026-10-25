@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volcano</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+  <meta name="theme-color" content="#f3f9ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1f14" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1><span aria-hidden="true">🌋</span> Volcano</h1>
+  </header>
+
+  <noscript><p>This page talks to the Volcano over Web Bluetooth and needs JavaScript.</p></noscript>
+
+  <main>
+    <fieldset id="device" disabled>
+      <legend>Device <button type="button" class="small" id="connect">Connect</button></legend>
+      <p class="temps">
+        <span id="status" role="status">Not connected</span>
+        <output id="temp" class="temp" hidden>--</output>
+      </p>
+      <progress id="heat-up" aria-label="Heat-up to target" hidden></progress>
+      <div class="row controls">
+        <form id="target-form" class="row">
+          <label for="target-input">Target °C</label>
+          <input id="target-input" type="number" required step="1">
+          <button>Set</button>
+        </form>
+        <div class="row">
+          <button type="button" id="heat" aria-pressed="false"><span aria-hidden="true">🔥</span> Heat</button>
+          <button type="button" id="air" aria-pressed="false"><span aria-hidden="true">💨</span> Air</button>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Workflows <button type="button" class="small" id="new">New</button></legend>
+      <ul id="workflows"></ul>
+      <p class="row" id="run-status">
+        <span id="progress" aria-live="polite"></span>
+        <button type="button" id="stop" hidden><strong class="danger">Stop</strong> workflow</button>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Device info <button type="button" class="small" data-copy="#info">Copy</button></legend>
+      <ol id="info" class="textbox"></ol>
+    </fieldset>
+
+    <fieldset>
+      <legend>Debug log <button type="button" class="small" data-copy="#log">Copy</button></legend>
+      <ol id="log" class="textbox"></ol>
+    </fieldset>
+
+  </main>
+
+  <dialog id="editor">
+    <form method="dialog">
+      <h2>Edit workflow</h2>
+      <p>
+        <label for="wf-name">Name</label>
+        <input id="wf-name" name="name" required>
+      </p>
+      <table>
+        <thead><tr><th>#</th><th>Temp °C</th><th>Hold s</th><th>Air s</th><th></th></tr></thead>
+        <tbody id="steps"></tbody>
+      </table>
+      <p class="row">
+        <button type="button" id="add-step">Add step</button>
+        <span class="row end">
+          <button value="save">Save</button>
+          <button type="button" id="delete">Delete</button>
+          <button type="button" id="cancel">Cancel</button>
+        </span>
+      </p>
+    </form>
+  </dialog>
+
+  <template id="workflow-item">
+    <li class="workflow">
+      <span class="name"></span>
+      <small class="summary"></small>
+      <button type="button" data-action="run">Run</button>
+      <button type="button" data-action="edit">Edit</button>
+    </li>
+  </template>
+
+  <template id="step-row">
+    <tr>
+      <td class="index"></td>
+      <td><input name="temp" type="number" required step="1" aria-label="Temperature °C"></td>
+      <td><input name="hold" type="number" required min="0" step="any" aria-label="Hold seconds"></td>
+      <td><input name="air" type="number" required min="0" step="any" aria-label="Air seconds"></td>
+      <td><button type="button" data-action="remove" aria-label="Remove step">✕</button></td>
+    </tr>
+  </template>
+</body>
+</html>
