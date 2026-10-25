@@ -141,8 +141,7 @@ ul { list-style: none; padding: 0; }
 #workflows { margin: 0; }
 li.workflow + li.workflow { margin-block-start: var(--space-2); }
 li.workflow {
-  --color-text: #e3f2d9; --color-muted: #a8c99a; --color-accent: #c5e86c;
-  --color-surface: #173a24; --color-border: #173a24;
+  --color-surface: #eaf4dd;
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -150,7 +149,10 @@ li.workflow {
   background: var(--color-surface);
 }
 @media (prefers-color-scheme: dark) {
-  li.workflow { --color-border: #3d6b47; }
+  li.workflow {
+    --color-text: #e3f2d9; --color-muted: #a8c99a; --color-accent: #c5e86c;
+    --color-surface: #173a24; --color-border: #3d6b47;
+  }
 }
 li .name { flex: 1; font-weight: 600; }
 
