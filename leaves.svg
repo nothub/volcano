@@ -29,7 +29,7 @@
   </g>
 
   <!-- Fern frond -->
-  <g transform="translate(300 375) rotate(-22)">
+  <g transform="translate(200 375) rotate(-22)">
     <path d="M0 0 C-4 -50 -2 -100 6 -150"/>
     <use xlink:href="#leaf" transform="translate(-1 -20) rotate(-35) scale(.42)"/>
     <use xlink:href="#leaf" transform="translate(-1 -20) rotate(215) scale(.42)"/>
@@ -46,8 +46,7 @@
 
   <!-- Single leaves -->
   <use xlink:href="#leaf" transform="translate(40 290) rotate(-40) scale(1.1)"/>
-  <use xlink:href="#leaf" transform="translate(175 250) rotate(25) scale(.8)"/>
-  <use xlink:href="#leaf" transform="translate(205 360) rotate(-155) scale(.7)"/>
+  <use xlink:href="#leaf" transform="translate(320 360) rotate(-155) scale(.7)"/>
 
   <!-- Sprout -->
   <g transform="translate(160 205)">
@@ -84,6 +83,12 @@
     <path d="M-26 0 A26 7 0 0 0 26 0"/>
     <path d="M-26 0 A26 7 0 0 1 -14 -5.9 M14 -5.9 A26 7 0 0 1 26 0"/>
     <path d="M-6 -6 C-3 -8 1 -8 4 -7"/>
+  </g>
+
+  <!-- Heart -->
+  <g transform="translate(296 268) rotate(-12) scale(1.4)">
+    <path d="M0 7 C-9 0 -12 -7 -7 -11 C-4 -13 -1 -11 0 -8 C1 -11 4 -13 7 -11 C12 -7 9 0 0 7 Z"/>
+    <path d="M-6 -7 C-6 -9 -5 -10 -3.5 -10"/>
   </g>
 
   <!-- Stars -->
