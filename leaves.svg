@@ -61,6 +61,36 @@
   <path d="M350 200 c-6 -5 -13 0 -10 7 c3 7 14 5 15 -2 c2 -11 -12 -17 -21 -9"/>
   <path d="M30 30 c8 4 10 14 3 18 c-7 4 -15 -3 -11 -10"/>
 
+  <!-- Flying saucer with its pilot -->
+  <g transform="translate(195 82) rotate(-12)">
+    <path d="M-24 0 C-24 -6 24 -6 24 0 C24 7 -24 7 -24 0 Z"/>
+    <path d="M-24 0 C-12 3 12 3 24 0"/>
+    <path d="M-11 -4 C-10 -18 10 -18 11 -4"/>
+    <circle cx="0" cy="-8" r="3.5"/>
+    <path d="M-1.5 -11 L-3 -13 M1.5 -11 L3 -13"/>
+    <path d="M-7 9 L-12 20 M7 9 L12 20" stroke-dasharray="2 3"/>
+    <g fill="#000" stroke="none">
+      <circle cx="-1.3" cy="-8.4" r=".8"/>
+      <circle cx="1.3" cy="-8.4" r=".8"/>
+      <circle cx="-14" cy="2" r="1.2"/>
+      <circle cx="0" cy="3.5" r="1.2"/>
+      <circle cx="14" cy="2" r="1.2"/>
+    </g>
+  </g>
+
+  <!-- Ringed planet; the ring's back half stops at the planet's edge -->
+  <g transform="translate(60 360) rotate(-20)">
+    <circle cx="0" cy="0" r="12"/>
+    <path d="M-26 0 A26 7 0 0 0 26 0"/>
+    <path d="M-26 0 A26 7 0 0 1 -14 -5.9 M14 -5.9 A26 7 0 0 1 26 0"/>
+    <path d="M-6 -6 C-3 -8 1 -8 4 -7"/>
+  </g>
+
+  <!-- Stars -->
+  <path d="M125 291 C126 298 127 299 134 300 C127 301 126 302 125 309 C124 302 123 301 116 300 C123 299 124 298 125 291 Z"/>
+  <path d="M375 32 C375.6 37 376 37.4 381 38 C376 38.6 375.6 39 375 44 C374.4 39 374 38.6 369 38 C374 37.4 374.4 37 375 32 Z"/>
+  <path d="M355 142 L357 147.25 L362.6 147.5 L358.2 151 L359.7 156.5 L355 153.4 L350.3 156.5 L351.8 151 L347.4 147.5 L353 147.25 Z"/>
+
   <!-- Seeds -->
   <g fill="#000" stroke="none">
     <circle cx="140" cy="30" r="2"/>
