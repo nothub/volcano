@@ -169,7 +169,8 @@ li .summary { flex-basis: 100%; order: 1; color: var(--color-muted); font-size: 
   li .summary { flex: 1; flex-basis: auto; order: 0; }
 }
 
-li[data-state="running"] {
+li[data-state="running"],
+#connect[data-idle]:not(:disabled) {
   outline: 2px solid var(--color-accent);
   animation: pulse 2s ease-in-out infinite;
 }
@@ -180,7 +181,8 @@ li[data-state="done"] .name::after { content: " \2713" / "done"; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  li[data-state="running"] { animation: none; }
+  li[data-state="running"],
+  #connect[data-idle]:not(:disabled) { animation: none; }
 }
 
 dialog {

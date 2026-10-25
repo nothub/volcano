@@ -9,6 +9,7 @@ const $ = (sel) => document.querySelector(sel);
 const volcano = new Volcano();
 const workflows = load();
 let running = null;
+let connecting = false;
 let lastRun = null;
 let editing = -1;
 
@@ -40,6 +41,7 @@ function setStatus(text) {
 function renderDevice() {
   const on = volcano.ready;
   $('#connect').textContent = volcano.connected ? 'Disconnect' : 'Connect';
+  $('#connect').toggleAttribute('data-idle', !volcano.connected && !connecting);
   $('#device').disabled = !on;
   $('#status').hidden = on;
   $('#temp').hidden = !on;
@@ -201,11 +203,16 @@ volcano.addEventListener('change', () => {
 $('#connect').addEventListener('click', async () => {
   if (volcano.connected) return volcano.disconnect();
   setStatus('Connecting…');
+  connecting = true;
+  renderDevice();
   try {
     await volcano.connect();
   } catch (err) {
     setStatus(`Connect failed: ${err.message}`);
     log(`connect failed: ${err.message}`);
+  } finally {
+    connecting = false;
+    renderDevice();
   }
 });
 
