@@ -4,8 +4,8 @@ const POLL_MS = 500;
 
 // Seed list for a fresh browser, times in seconds.
 export const DEFAULT_WORKFLOWS = [
-  { name: 'Day', steps: [{ temp: 178, hold: 5, air: 40 }] },
-  { name: 'Night', steps: [{ temp: 186, hold: 5, air: 40 }] },
+  { name: 'Day', steps: [{ temp: 178, hold: 5, air: 42 }] },
+  { name: 'Night', steps: [{ temp: 186, hold: 5, air: 42 }] },
 ];
 
 // Per step: set target, wait until reached, hold, pump air. Heat and air are
